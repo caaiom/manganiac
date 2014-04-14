@@ -1,0 +1,209 @@
+﻿<html ng-app>
+    <head>
+        <title>Lista de compras</title>
+
+        <link href="css/bootstrap.css" rel="stylesheet"/>
+        <script src="js/jquery-2.1.0.min.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="js/angular.min.js"></script>
+        <script src="js/mangaController.js"></script>
+        <style type="text/css">
+        	.customInvisible {
+        		display:none;
+        	}
+        </style>
+    </head>
+    <body>
+    	<div class="container">
+	        <div class="row">
+	        	<h1 class="pull-left" id="titleText">Manganiac - Itens</h1>
+	        	<button style="margin-top:20px" class="btn btn-primary pull-right" id="btnInserirNovo">Insert new</button>
+	    	</div>
+	    	<div ng-controller="MangaController">
+	    		<div id="listEditions">
+		    		<div class="row">
+			    		<table class="table table-striped table-hover">
+			    			<thead>
+			    				<tr>
+			    					<th>Title</th>
+			    					<th>Author</th>
+			    					<th>Publisher</th>
+			    					<th class="text-center">Last volume</th>
+			    					<th class="text-center">Last purchased</th>
+			    					<th>Price</th>
+			    					<th class="text-center">Buy priority</th>
+			    					<th>Rate</th>
+			    					<th>Link</th>
+			    					<th>
+			    				</tr>
+			    			</thead>
+			    			<tbody>
+			    				<tr ng-repeat="item in itens">
+			    					<td style="width:20%">
+			    						<span ng-hide="editing">
+			    							{{ item.title }}
+			    						</span>
+			    						<input type="text" class="form-control" ng-show="editing" ng-model="item.title" />
+			    					</td>
+			    					<td style="width:10%">
+			    						<span ng-hide="editing">
+			    							{{ item.author }}
+			    						</span>
+			    						<input type="text" class="form-control" ng-show="editing" ng-model="item.author" />
+			    					</td>
+			    					<td style="width:auto">
+			    						<span ng-hide="editing">
+			    							{{ item.publisher }}
+			    						</span>
+			    						<input type="text" class="form-control" ng-show="editing" ng-model="item.publisher" />
+			    					</td>
+			    					<td class="text-center" style="width:auto">
+			    						<span ng-hide="editing">
+			    							{{ item.currentVolume }}
+			    						</span>
+			    						<input type="text" class="form-control" ng-show="editing" ng-model="item.currentVolume" />
+			    					</td>
+			    					<td class="text-center" style="width:auto">
+			    						<span ng-hide="editing">
+			    							{{ item.lastVolumePurchased }}
+			    						</span>
+			    						<input type="text" class="form-control" ng-show="editing" ng-model="item.lastVolumePurchased" />
+			    					</td>
+			    					<td class="text-right" style="width:auto">
+			    						<span ng-hide="editing">
+			    							{{ item.price }}
+			    						</span>
+			    						<input type="text" class="form-control" ng-show="editing" ng-model="item.price" />
+			    					</td>
+			    					<td class="text-center" style="width:auto">
+			    						<span ng-hide="editing">
+			    							{{ item.buyImportance }}
+			    						</span>
+			    						<input type="text" class="form-control" ng-show="editing" ng-model="item.buyImportance" />
+			    					</td>
+			    					<td class="text-center" style="width:auto">
+			    						<span ng-hide="editing">
+			    							{{ item.rate }}
+			    						</span>
+			    						<input type="text" class="form-control" ng-show="editing" ng-model="item.rate" />
+			    					</td>
+			    					<td class="text-center" style="width:auto">
+			    						<a href="{{ item.linkToDescription }}" ng-hide="editing"><span class="glyphicon glyphicon-new-window"></span></a>
+			    						<input type="text" class="form-control" ng-show="editing" ng-model="item.linkToDescription" />
+			    					</td>
+			    					<td  style="width:16%">
+										<button class="btn btn-default" ng-click="editing = true" ng-hide="editing"><span class="glyphicon glyphicon-pencil"></span> Edit</button>
+			    						<button class="btn btn-default" ng-click="removeItem($index)" ng-hide="editing"><span class="glyphicon glyphicon-remove"></span> Delete</button>
+			    						<button class="btn btn-default" ng-click="editing = false; editaItem()" ng-show="editing"><span class="glyphicon glyphicon-ok"></span> Save</button>
+			    					</td>
+			    				</tr>
+			    			</tbody>
+			    		</table>
+			    	</div>
+			    </div>
+			    <div id="insertEdition" class="customInvisible">
+		    		<div class="row">
+				    	<form class="form" name="formEdition">
+				    		<div class="form-group">
+			    			  	<label for="txtTitle">Title</label>
+								<input type="text" class="form-control" id="txtTitle" name="txtTitle" ng-model="item.title" />
+			  				</div>
+			  				<div class="form-group">
+			    			  	<label for="txtAuthor">Author</label>
+								<input type="text" class="form-control" id="txtAuthor" name="txtAuthor" ng-model="item.author" />
+			  				</div>
+			  				<div class="form-group">
+			    			  	<label for="txtCurrentVolume">Last volume</label>
+								<input type="number" class="form-control" id="txtCurrentVolume" name="txtCurrentVolume" ng-model="item.currentVolume" />
+			  				</div>
+			  				<div class="form-group">
+			    			  	<label for="txtLastVolumePurchased">Last purchased</label>
+								<input type="number" class="form-control" id="txtLastVolumePurchased" name="txtLastVolumePurchased" ng-model="item.lastVolumePurchased" />
+			  				</div>
+			  				<div class="form-group">
+			    			  	<label>Rate</label><br>
+			    			  	<label class="radio-inline">
+									<input type="radio" name="rbRate" ng-model="item.rate" value="0"> 0
+								</label>
+								<label class="radio-inline">
+			    			  		<input type="radio" name="rbRate" ng-model="item.rate" value="1"> 1
+								</label>
+								<label class="radio-inline">
+			    			  		<input type="radio" name="rbRate" ng-model="item.rate" value="2"> 2
+								</label>
+								<label class="radio-inline">
+			    			  		<input type="radio" name="rbRate" ng-model="item.rate" value="3"> 3
+								</label>
+								<label class="radio-inline">
+			    			  		<input type="radio" name="rbRate" ng-model="item.rate" value="4"> 4
+								</label>
+								<label class="radio-inline">
+			    			  		<input type="radio" name="rbRate" ng-model="item.rate" value="5"> 5
+								</label>
+			  				</div>
+			  				<div class="form-group">
+			    			  	<label for="txtPublisher">Publisher</label>
+								<input type="text" class="form-control" id="txtPublisher" name="txtPublisher" ng-model="item.publisher" />
+			  				</div>
+			  				<div class="form-group">
+			    			  	<label for="txtBuyImportance">Buy priority</label><br>
+								<label class="radio-inline">
+									<input type="radio" name="rbBuyImportance" ng-model="item.buyImportance" value="0"> 0
+								</label>
+								<label class="radio-inline">
+			    			  		<input type="radio" name="rbBuyImportance" ng-model="item.buyImportance" value="1"> 1
+								</label>
+								<label class="radio-inline">
+			    			  		<input type="radio" name="rbBuyImportance" ng-model="item.buyImportance" value="2"> 2
+								</label>
+								<label class="radio-inline">
+			    			  		<input type="radio" name="rbBuyImportance" ng-model="item.buyImportance" value="3"> 3
+								</label>
+								<label class="radio-inline">
+			    			  		<input type="radio" name="rbBuyImportance" ng-model="item.buyImportance" value="4"> 4
+								</label>
+								<label class="radio-inline">
+			    			  		<input type="radio" name="rbBuyImportance" ng-model="item.buyImportance" value="5"> 5
+								</label>
+			  				</div>
+			  				<div class="form-group">
+			    			  	<label for="txtPrice">Price</label>
+								<input type="number" class="form-control" id="txtPrice" name="txtPrice" ng-model="item.price" />
+			  				</div>
+			  				<div class="form-group">
+			    			  	<label for="txtFinished"><input type="checkbox" name="ckFinished" value="1" ng-model="item.finished"> Finished?</label>
+			  				</div>
+			  				<div class="form-group">
+			    			  	<label for="txtlinkToDescription">Link to description</label>
+								<input type="text" class="form-control" id="txtlinkToDescription" name="txtlinkToDescription" ng-model="item.linkToDescription" />
+			  				</div>
+					   	  	<button class="btn btn-default" id="btnInserir" ng-click="insertEdition()">Insert</button>
+							<button class="btn btn-default" id="btnVoltar">Cancel</button>
+
+				    	</form>
+			    	</div>
+		    	</div>
+	    	</div>
+    	</div>
+
+    	<script type="text/javascript"> 
+    		$("#btnInserirNovo").click(function () {
+    			$("#titleText").text("Manganiac - Insert");
+    			$("#btnInserirNovo").hide().fadeOut();
+    			toggleFormFade("insertEdition", "listEditions");
+    		});
+
+    		$("#btnVoltar").click(function () {
+    			$("#titleText").text("Lista de Itens");
+    			$("#btnInserirNovo").hide().fadeIn();
+    			toggleFormFade("listEditions", "insertEdition");
+    		});
+
+    		function toggleFormFade(formIn, formOut)
+    		{
+    			$("#" + formIn).hide().fadeIn();
+    			$("#" + formOut).hide().fadeOut();	
+    		}
+    	</script>
+    </body>
+</html>
