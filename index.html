@@ -34,62 +34,62 @@
 			    					<th class="text-center">Buy priority</th>
 			    					<th>Rate</th>
 			    					<th>Link</th>
-			    					<th>
+			    					<th></th>
 			    				</tr>
 			    			</thead>
 			    			<tbody>
-			    				<tr ng-repeat="item in itens">
+			    				<tr ng-repeat="manga in mangas">
 			    					<td style="width:20%">
 			    						<span ng-hide="editing">
-			    							{{ item.title }}
+			    							{{ manga.title }}
 			    						</span>
-			    						<input type="text" class="form-control" ng-show="editing" ng-model="item.title" />
+			    						<input type="text" class="form-control" ng-show="editing" ng-model="manga.title" />
 			    					</td>
 			    					<td style="width:10%">
 			    						<span ng-hide="editing">
-			    							{{ item.author }}
+			    							{{ manga.author }}
 			    						</span>
-			    						<input type="text" class="form-control" ng-show="editing" ng-model="item.author" />
+			    						<input type="text" class="form-control" ng-show="editing" ng-model="manga.author" />
 			    					</td>
 			    					<td style="width:auto">
 			    						<span ng-hide="editing">
-			    							{{ item.publisher }}
+			    							{{ manga.publisher }}
 			    						</span>
-			    						<input type="text" class="form-control" ng-show="editing" ng-model="item.publisher" />
+			    						<input type="text" class="form-control" ng-show="editing" ng-model="manga.publisher" />
 			    					</td>
 			    					<td class="text-center" style="width:auto">
 			    						<span ng-hide="editing">
-			    							{{ item.currentVolume }}
+			    							{{ manga.currentVolume }}
 			    						</span>
-			    						<input type="text" class="form-control" ng-show="editing" ng-model="item.currentVolume" />
+			    						<input type="text" class="form-control" ng-show="editing" ng-model="manga.currentVolume" />
 			    					</td>
 			    					<td class="text-center" style="width:auto">
 			    						<span ng-hide="editing">
-			    							{{ item.lastVolumePurchased }}
+			    							{{ manga.lastVolumePurchased }}
 			    						</span>
-			    						<input type="text" class="form-control" ng-show="editing" ng-model="item.lastVolumePurchased" />
+			    						<input type="text" class="form-control" ng-show="editing" ng-model="manga.lastVolumePurchased" />
 			    					</td>
 			    					<td class="text-right" style="width:auto">
 			    						<span ng-hide="editing">
-			    							{{ item.price }}
+			    							{{ manga.price }}
 			    						</span>
-			    						<input type="text" class="form-control" ng-show="editing" ng-model="item.price" />
+			    						<input type="text" class="form-control" ng-show="editing" ng-model="manga.price" />
 			    					</td>
 			    					<td class="text-center" style="width:auto">
 			    						<span ng-hide="editing">
-			    							{{ item.buyImportance }}
+			    							{{ manga.buyImportance }}
 			    						</span>
-			    						<input type="text" class="form-control" ng-show="editing" ng-model="item.buyImportance" />
+			    						<input type="text" class="form-control" ng-show="editing" ng-model="manga.buyImportance" />
 			    					</td>
 			    					<td class="text-center" style="width:auto">
 			    						<span ng-hide="editing">
-			    							{{ item.rate }}
+			    							{{ manga.rate }}
 			    						</span>
-			    						<input type="text" class="form-control" ng-show="editing" ng-model="item.rate" />
+			    						<input type="text" class="form-control" ng-show="editing" ng-model="manga.rate" />
 			    					</td>
 			    					<td class="text-center" style="width:auto">
-			    						<a href="{{ item.linkToDescription }}" ng-hide="editing"><span class="glyphicon glyphicon-new-window"></span></a>
-			    						<input type="text" class="form-control" ng-show="editing" ng-model="item.linkToDescription" />
+			    						<a href="{{ manga.linkToDescription }}" ng-hide="editing"><span class="glyphicon glyphicon-new-window"></span></a>
+			    						<input type="text" class="form-control" ng-show="editing" ng-model="manga.linkToDescription" />
 			    					</td>
 			    					<td  style="width:16%">
 										<button class="btn btn-default" ng-click="editing = true" ng-hide="editing"><span class="glyphicon glyphicon-pencil"></span> Edit</button>
@@ -106,76 +106,76 @@
 				    	<form class="form" name="formEdition">
 				    		<div class="form-group">
 			    			  	<label for="txtTitle">Title</label>
-								<input type="text" class="form-control" id="txtTitle" name="txtTitle" ng-model="item.title" />
+								<input type="text" class="form-control" id="txtTitle" name="txtTitle" ng-model="manga.title" />
 			  				</div>
 			  				<div class="form-group">
 			    			  	<label for="txtAuthor">Author</label>
-								<input type="text" class="form-control" id="txtAuthor" name="txtAuthor" ng-model="item.author" />
+								<input type="text" class="form-control" id="txtAuthor" name="txtAuthor" ng-model="manga.author" />
 			  				</div>
 			  				<div class="form-group">
 			    			  	<label for="txtCurrentVolume">Last volume</label>
-								<input type="number" class="form-control" id="txtCurrentVolume" name="txtCurrentVolume" ng-model="item.currentVolume" />
+								<input type="number" class="form-control" id="txtCurrentVolume" name="txtCurrentVolume" ng-model="manga.currentVolume" />
 			  				</div>
 			  				<div class="form-group">
 			    			  	<label for="txtLastVolumePurchased">Last purchased</label>
-								<input type="number" class="form-control" id="txtLastVolumePurchased" name="txtLastVolumePurchased" ng-model="item.lastVolumePurchased" />
+								<input type="number" class="form-control" id="txtLastVolumePurchased" name="txtLastVolumePurchased" ng-model="manga.lastVolumePurchased" />
 			  				</div>
 			  				<div class="form-group">
 			    			  	<label>Rate</label><br>
 			    			  	<label class="radio-inline">
-									<input type="radio" name="rbRate" ng-model="item.rate" value="0"> 0
+									<input type="radio" name="rbRate" ng-model="manga.rate" value="0"> 0
 								</label>
 								<label class="radio-inline">
-			    			  		<input type="radio" name="rbRate" ng-model="item.rate" value="1"> 1
+			    			  		<input type="radio" name="rbRate" ng-model="manga.rate" value="1"> 1
 								</label>
 								<label class="radio-inline">
-			    			  		<input type="radio" name="rbRate" ng-model="item.rate" value="2"> 2
+			    			  		<input type="radio" name="rbRate" ng-model="manga.rate" value="2"> 2
 								</label>
 								<label class="radio-inline">
-			    			  		<input type="radio" name="rbRate" ng-model="item.rate" value="3"> 3
+			    			  		<input type="radio" name="rbRate" ng-model="manga.rate" value="3"> 3
 								</label>
 								<label class="radio-inline">
-			    			  		<input type="radio" name="rbRate" ng-model="item.rate" value="4"> 4
+			    			  		<input type="radio" name="rbRate" ng-model="manga.rate" value="4"> 4
 								</label>
 								<label class="radio-inline">
-			    			  		<input type="radio" name="rbRate" ng-model="item.rate" value="5"> 5
+			    			  		<input type="radio" name="rbRate" ng-model="manga.rate" value="5"> 5
 								</label>
 			  				</div>
 			  				<div class="form-group">
 			    			  	<label for="txtPublisher">Publisher</label>
-								<input type="text" class="form-control" id="txtPublisher" name="txtPublisher" ng-model="item.publisher" />
+								<input type="text" class="form-control" id="txtPublisher" name="txtPublisher" ng-model="manga.publisher" />
 			  				</div>
 			  				<div class="form-group">
 			    			  	<label for="txtBuyImportance">Buy priority</label><br>
 								<label class="radio-inline">
-									<input type="radio" name="rbBuyImportance" ng-model="item.buyImportance" value="0"> 0
+									<input type="radio" name="rbBuyImportance" ng-model="manga.buyImportance" value="0"> 0
 								</label>
 								<label class="radio-inline">
-			    			  		<input type="radio" name="rbBuyImportance" ng-model="item.buyImportance" value="1"> 1
+			    			  		<input type="radio" name="rbBuyImportance" ng-model="manga.buyImportance" value="1"> 1
 								</label>
 								<label class="radio-inline">
-			    			  		<input type="radio" name="rbBuyImportance" ng-model="item.buyImportance" value="2"> 2
+			    			  		<input type="radio" name="rbBuyImportance" ng-model="manga.buyImportance" value="2"> 2
 								</label>
 								<label class="radio-inline">
-			    			  		<input type="radio" name="rbBuyImportance" ng-model="item.buyImportance" value="3"> 3
+			    			  		<input type="radio" name="rbBuyImportance" ng-model="manga.buyImportance" value="3"> 3
 								</label>
 								<label class="radio-inline">
-			    			  		<input type="radio" name="rbBuyImportance" ng-model="item.buyImportance" value="4"> 4
+			    			  		<input type="radio" name="rbBuyImportance" ng-model="manga.buyImportance" value="4"> 4
 								</label>
 								<label class="radio-inline">
-			    			  		<input type="radio" name="rbBuyImportance" ng-model="item.buyImportance" value="5"> 5
+			    			  		<input type="radio" name="rbBuyImportance" ng-model="manga.buyImportance" value="5"> 5
 								</label>
 			  				</div>
 			  				<div class="form-group">
 			    			  	<label for="txtPrice">Price</label>
-								<input type="number" class="form-control" id="txtPrice" name="txtPrice" ng-model="item.price" />
+								<input type="number" class="form-control" id="txtPrice" name="txtPrice" ng-model="manga.price" />
 			  				</div>
 			  				<div class="form-group">
-			    			  	<label for="txtFinished"><input type="checkbox" name="ckFinished" value="1" ng-model="item.finished"> Finished?</label>
+			    			  	<label for="txtFinished"><input type="checkbox" name="ckFinished" value="1" ng-model="manga.finished"> Finished?</label>
 			  				</div>
 			  				<div class="form-group">
 			    			  	<label for="txtlinkToDescription">Link to description</label>
-								<input type="text" class="form-control" id="txtlinkToDescription" name="txtlinkToDescription" ng-model="item.linkToDescription" />
+								<input type="text" class="form-control" id="txtlinkToDescription" name="txtlinkToDescription" ng-model="manga.linkToDescription" />
 			  				</div>
 					   	  	<button class="btn btn-default" id="btnInserir" ng-click="insertEdition()">Insert</button>
 							<button class="btn btn-default" id="btnVoltar">Cancel</button>
