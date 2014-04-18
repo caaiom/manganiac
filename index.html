@@ -93,8 +93,8 @@
 			    					</td>
 			    					<td  style="width:16%">
 										<button class="btn btn-default" ng-click="editing = true" ng-hide="editing"><span class="glyphicon glyphicon-pencil"></span> Edit</button>
-			    						<button class="btn btn-default" ng-click="removeItem($index)" ng-hide="editing"><span class="glyphicon glyphicon-remove"></span> Delete</button>
-			    						<button class="btn btn-default" ng-click="editing = false; editaItem()" ng-show="editing"><span class="glyphicon glyphicon-ok"></span> Save</button>
+			    						<button class="btn btn-default" ng-click="deleteEdition($index)" ng-hide="editing"><span class="glyphicon glyphicon-remove"></span> Delete</button>
+			    						<button class="btn btn-default" ng-click="editing = false; updateEdition($index)" ng-show="editing"><span class="glyphicon glyphicon-ok"></span> Save</button>
 			    					</td>
 			    				</tr>
 			    			</tbody>

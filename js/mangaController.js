@@ -26,19 +26,22 @@ function MangaController($scope, $http) {
         });
     }
 
+    $scope.deleteEdition = function (index) {
+        var MangaToDelete = $scope.mangas[index];
+        console.log(MangaToDelete);
+        $http.post('http://localhost:1337/api/deleteItem', MangaToDelete).success(function() {
+            $scope.mangas.splice(index, 1);
+            alert("Deleted.");
+        });
+    }
+
+    $scope.updateEdition = function (index) {
+        var MangaToUpdate = $scope.mangas[index];
+
+        $http.post('http://localhost:1337/api/updateItem', MangaToUpdate).success(function() {
+            alert("Updated.");
+        });
+    }
+
     $scope.listEditions();
-
-    /**$scope.editaItem = function () {
-    	$scope.item.push({
-    		produto: $scope.item.produto,
-    		quantidade: $scope.item.quantidade
-    	}); 
-    };**/
-
-    /**$scope.removeItem = function (index) {
-    	var deleteItem = confirm("Deseja realmente excluir o item?");
-    	if (deleteItem) {
-			$scope.itens.splice(index, 1);    		
-    	};
-    };**/
 }

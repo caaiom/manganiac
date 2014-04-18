@@ -13,6 +13,7 @@ app.all('*', function(req, res, next) {
     }
     next();
 });
+
 var db = Mongoose.connection;
 
 db.on('error', console.error);
@@ -44,8 +45,8 @@ app.get('/api/getAllItens', function (req, res) {
 	});
 });
 
-app.post('/api/insertItem', function (req, res) {
-	
+app.post('/api/insertUpdateItem', function (req, res) {
+
 	var edition = new Manga({
 		title: req.body.title,
 		author: req.body.author,
@@ -63,6 +64,34 @@ app.post('/api/insertItem', function (req, res) {
 		if (err) res.send(500);
 		res.send(201);
 	});
+});
+
+app.post('/api/deleteItem', function (req, res) {
+	Manga.remove({ _id: req.body._id }, function (err){
+		if(err) res.send(500);
+		res.send(201);
+	});
+});
+
+app.post('/api/updateItem', function (req, res) {
+	Manga.update({_id : req.body._id}, 
+		{ 
+			"title": req.body.title,
+			"author": req.body.author,
+			"currentVolume": req.body.currentVolume,
+			"lastVolumePurchased": req.body.lastVolumePurchased,
+			"rate": req.body.rate,
+			"publisher": req.body.publisher,
+			"buyImportance": req.body.buyImportance,
+			"price": req.body.price,
+			"finished": req.body.finished,
+			"linkToDescription": req.body.linkToDescription		
+		}, 
+		function (err){
+			if(err) res.send(500);
+			res.send(201);
+		} 
+	);
 });
 
 app.listen(1337);
