@@ -1,3 +1,5 @@
+var url = "http://localhost:1337";
+
 function MangaController($scope, $http) {
 
     function Manga()  {
@@ -14,13 +16,13 @@ function MangaController($scope, $http) {
     }
     
     $scope.listEditions = function () {
-        $http.get('http://localhost:1337/api/getAllItens').success(function (retorno) {
+        $http.get(url + '/api/manga').success(function (retorno) {
             $scope.mangas = retorno.mangas;
         });
     };
 
     $scope.insertEdition = function() {
-        $http.post('http://localhost:1337/api/insertItem', $scope.manga).success(function() {
+        $http.post(url + '/api/manga', $scope.manga).success(function() {
             $scope.mangas.push($scope.manga);
             $scope.manga = new Manga();
         });
@@ -28,19 +30,35 @@ function MangaController($scope, $http) {
 
     $scope.deleteEdition = function (index) {
         var MangaToDelete = $scope.mangas[index];
-        console.log(MangaToDelete);
-        $http.post('http://localhost:1337/api/deleteItem', MangaToDelete).success(function() {
+        
+        var resquest = $http({
+          method: "delete",
+          url: url + '/api/manga/',
+          params: { id: MangaToDelete._id }
+        });
+
+        resquest.then(
+          function(){
             $scope.mangas.splice(index, 1);
             alert("Deleted.");
+        },
+
+        function(err){
+            alert('error:' + err);
+
         });
     }
 
     $scope.updateEdition = function (index) {
         var MangaToUpdate = $scope.mangas[index];
 
-        $http.post('http://localhost:1337/api/updateItem', MangaToUpdate).success(function() {
+        $http.put(url + '/api/manga', MangaToUpdate)
+        .success(function() {
             alert("Updated.");
-        });
+        })
+        .error(function(err){
+          alert("error:" + err);
+        })
     }
 
     $scope.listEditions();
